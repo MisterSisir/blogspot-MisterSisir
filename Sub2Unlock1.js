@@ -1,10 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const subscribeButton = document.querySelector('.btn.subscribe');
-    const nextButtons = document.querySelectorAll('.btn.next');
+    const buttons = document.querySelectorAll('.btn');
 
-    nextButtons.forEach(button => button.style.display = 'none');
+    buttons.forEach((button, index) => {
+        if (index !== 0) {
+            button.disabled = true; // Disable all buttons except the first one
+        }
 
-    subscribeButton.addEventListener('click', function() {
-        nextButtons.forEach(button => button.style.display = 'block');
+        button.addEventListener('click', function() {
+            if (index < buttons.length - 1) {
+                buttons[index + 1].disabled = false; // Enable the next button
+            }
+        });
     });
 });
